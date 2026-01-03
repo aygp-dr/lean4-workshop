@@ -1,0 +1,137 @@
+#+TITLE: Lean 4 Workshop
+#+AUTHOR: aygp-dr
+#+OPTIONS: toc:2 num:nil
+
+[[https://github.com/aygp-dr/lean4-workshop/actions][https://img.shields.io/github/actions/workflow/status/aygp-dr/lean4-workshop/ci.yml?branch=main&style=flat-square]]
+[[https://github.com/leanprover/lean4][https://img.shields.io/badge/Lean-4.23.0-blue?style=flat-square&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0id2hpdGUiIGQ9Ik0xMiAyTDIgMTlIMjJMMTIgMloiLz48L3N2Zz4=]]
+[[https://github.com/aygp-dr/lean4-workshop/blob/main/LICENSE][https://img.shields.io/badge/license-MIT-green?style=flat-square]]
+[[https://github.com/aygp-dr/lean4-workshop][https://img.shields.io/github/stars/aygp-dr/lean4-workshop?style=flat-square]]
+[[https://orgmode.org][https://img.shields.io/badge/docs-org--mode-blueviolet?style=flat-square]]
+
+* Overview
+
+A hands-on workshop for learning [[https://lean-lang.org][Lean 4]], the functional programming language and interactive theorem prover.
+
+This repository contains:
+- Learning resources and tutorials
+- Example proofs demonstrating Lean 4 concepts
+- Makefile for common operations
+
+* Quick Start
+
+** Prerequisites
+
+- Lean 4 (v4.23.0 or later)
+- Lake (comes with Lean 4)
+- Optional: elan (version manager)
+
+** Check Your Setup
+
+#+BEGIN_SRC sh
+gmake deps    # Verify Lean 4 toolchain
+gmake check   # Run a quick hello world test
+#+END_SRC
+
+* Repository Structure
+
+#+BEGIN_SRC
+lean4-workshop/
+├── README.org        # This file
+├── RESOURCES.org     # Learning resources and tutorials
+├── Makefile          # Build and check commands
+├── O1Sort.lean       # Example: satirical "O(1) sort" proof
+├── AGENTS.md         # Issue tracking instructions
+└── .beads/           # Issue tracking database
+#+END_SRC
+
+* Learning Path
+
+** 1. Interactive Games (Recommended Start)
+
+| Game | Description | Link |
+|------+-------------+------|
+| Natural Number Game | Prove 2+2=4 and learn induction | [[https://adam.math.hhu.de/#/g/leanprover-community/NNG4][Play NNG4]] |
+| Set Theory Game | Learn set operations | [[https://adam.math.hhu.de][Lean Game Server]] |
+| Robo | Story-based math puzzles | [[https://adam.math.hhu.de][Lean Game Server]] |
+
+** 2. Books and Tutorials
+
+| Resource | Audience | Link |
+|----------+----------+------|
+| Functional Programming in Lean | Programmers | [[https://lean-lang.org/functional_programming_in_lean/][FPIL]] |
+| Theorem Proving in Lean 4 | Proof enthusiasts | [[https://lean-lang.org/theorem_proving_in_lean4/][TPIL]] |
+| Mathematics in Lean | Mathematicians | [[https://leanprover-community.github.io/mathematics_in_lean/][MIL]] |
+| Learn X in Y Minutes | Quick reference | [[https://learnxinyminutes.com/lean4/][Lean4 in Y]] |
+
+See [[file:RESOURCES.org][RESOURCES.org]] for the complete list.
+
+** 3. Example: O(1) Sort Proof
+
+Our [[file:O1Sort.lean][O1Sort.lean]] demonstrates why specifications matter:
+
+#+BEGIN_SRC lean4
+-- The "fastest" sort algorithm
+def sort {α : Type} : List α → List α := fun x => x
+
+-- It's idempotent!
+theorem sort_idempotent (xs : List α) :
+  sort (sort xs) = sort xs := rfl
+
+-- But is the output actually sorted? 🤡
+-- (Out of scope for this paper)
+#+END_SRC
+
+*Moral*: Formal verification proves your code matches your spec. It doesn't prove your spec is what you actually wanted.
+
+* Editor Setup
+
+** VS Code (Recommended)
+
+Install the =lean4= extension from the marketplace.
+
+** Emacs
+
+#+BEGIN_SRC elisp
+;; Using straight.el + use-package
+(use-package lean4-mode
+  :straight (lean4-mode
+             :type git
+             :host github
+             :repo "leanprover-community/lean4-mode"
+             :files ("*.el" "data")))
+#+END_SRC
+
+Key binding: =C-c C-i= toggles the proof state view.
+
+* Makefile Targets
+
+| Target | Description |
+|--------+-------------|
+| =help= | Show available targets |
+| =deps= | Check Lean 4 toolchain |
+| =check= | Verify installation with hello world |
+| =build= | Build project with Lake |
+| =clean= | Remove build artifacts |
+
+* Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes (org-mode files only)
+4. Submit a pull request
+
+* Community
+
+- [[https://leanprover.zulipchat.com/][Zulip Chat]] - Active, welcoming community
+- [[https://github.com/leanprover/lean4][Lean 4 GitHub]] - Source and issues
+- [[https://github.com/leanprover-community/mathlib4][Mathlib4]] - Mathematics library
+
+* License
+
+MIT License - See LICENSE file for details.
+
+* Acknowledgments
+
+- [[https://leanprover.github.io/][Lean Prover Community]]
+- [[https://www.microsoft.com/en-us/research/project/lean/][Microsoft Research]]
+- Workshop participants and contributors
