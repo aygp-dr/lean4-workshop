@@ -199,6 +199,14 @@ Key bindings:
 - Focus: High-school contest math, IMO problems
 - Accuracy: 93.5%
 
+** PSV: Propose, Solve, Verify (2024)
+- URL: https://arxiv.org/abs/2512.18160
+- Authors: Wilf, Aggarwal, Parno, Fried, et al.
+- Focus: Self-play training via formal verification
+- Tool: Verus (Rust verification)
+- Result: 9.6x improvement in code generation
+- Relevance: Shows verification as training oracle
+
 ** Hitchhiker's Guide to Logical Verification
 - Level: Graduate CS/PL theory
 - Note: Copyright (All Rights Reserved) - reference only
